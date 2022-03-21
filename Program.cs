@@ -13,7 +13,8 @@ Console.WriteLine("this is the new way");
 Person michael = new Person("Michael", "Marsico", 15);
 Teacher langchung = new Teacher("Tenzin", "Langchung", "Computer Science");
 
-Console.WriteLine($"{michael.FirstName} is in {langchung.FirstName[0]}. {langchung.LastName}'s {langchung.Subject} class.");
+Console.WriteLine($"{michael.FirstName} is in {langchung.GetDigitalSignature()}'s {langchung.Subject} class.");
+Console.ReadLine();
 
 /*
     -- PERSON CLASS --
@@ -25,21 +26,7 @@ class Person
     private string lastName;
     private byte age;
 
-    public Person()
-    {
-        FirstName = "N/A";
-        LastName = "N/A";
-        Age = 0;
-    }
-
-    public Person(string fName, string lName)
-    {
-        FirstName = fName;
-        LastName = lName;
-        Age = 0;
-    }
-
-    public Person(string fName, string lName, byte nAge)
+    public Person(string fName = "N/A", string lName = "N/A", byte nAge = 0)
     {
         FirstName = fName;
         LastName = lName;
@@ -98,6 +85,11 @@ class Person
             }
         }
     }
+
+    public string GetDigitalSignature()
+    {
+        return $"{FirstName[0]}. {LastName}";
+    }
 }
 
 /*
@@ -107,22 +99,16 @@ class Person
 class Teacher : Person
 {
     public static readonly string[] Subjects = {
-        "Computer Science"
+        "Computer Science",
+        "Mathematics",
+        "Science",
+        "Social Studies",
+        "English"
     };
 
     private string subject;
 
-    public Teacher() : base()
-    {
-        Subject = "N/A";
-    }
-
-    public Teacher(string fName, string lName) : base(fName, lName)
-    {
-        Subject = "N/A";
-    }
-
-    public Teacher(string fName, string lName, string nSubject) : base(fName, lName)
+    public Teacher(string fName = "N/A", string lName = "N/A", string nSubject = "N/A") : base(fName, lName)
     {
         Subject = nSubject;
     }
